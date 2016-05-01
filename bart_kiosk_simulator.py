@@ -15,23 +15,31 @@ def travel_to_destination(fare_price,card_value):
 
 
 
+
+def calculate_fare(bart_line,start_point,end_point):
+	trip = bart_line[start_point:end_point+1]
+	print trip
+	total = len(trip) * 1.25
+	print total
+
+
+
 def main():
-	DUBLIN_TO_POWELL = 6.15
-	FRUITVALE_TO_UNION_CITY = 3.80
-	ORINDA_TO_RICHMOND = 3.35
-	HAYWARD_TO_CONCORD = 5.20
-	FREMONT_TO_COLMA = 6.60
-	print "Test Cases"
-	clipper_card1 = load_card(3,0,0,0)
-	travel_to_destination(FREMONT_TO_COLMA,clipper_card1)
+	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
+	print "Station List: "
+	print DUBLIN_PLEASANTON
+	starting_point = raw_input("Where are you boarding the train? ")
+	if starting_point in DUBLIN_PLEASANTON:
+		starting_station = DUBLIN_PLEASANTON.index(starting_point)
+	else:
+		"There's no such BART station"
+	end_point = raw_input("What is your destination? ")
+	if end_point in DUBLIN_PLEASANTON:
+		destination_station = DUBLIN_PLEASANTON.index(end_point)		
+	else:
+		"You're heading towards nowhere"
 
-	clipper_card2 = load_card(1,0,0,1)
-	travel_to_destination(HAYWARD_TO_CONCORD,clipper_card2)
-
-	clipper_card3 = load_card(1,1,0,0)
-	travel_to_destination(DUBLIN_TO_POWELL,clipper_card3)
-
-	clipper_card4 = load_card(2,0,0,0)	
-	travel_to_destination(FRUITVALE_TO_UNION_CITY,clipper_card4)
+	calculate_fare(DUBLIN_PLEASANTON, starting_station, destination_station)
+	
 if __name__ == '__main__':
 	main()
