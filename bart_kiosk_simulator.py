@@ -28,18 +28,18 @@ def main():
 	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
 	print "Station List: "
 	print DUBLIN_PLEASANTON
-	starting_point = raw_input("Where are you boarding the train? ")
-	if starting_point in DUBLIN_PLEASANTON:
-		starting_station = DUBLIN_PLEASANTON.index(starting_point)
+	starting_station_name = raw_input("Where are you boarding the train? ")
+	if starting_station_name in DUBLIN_PLEASANTON:
+		starting_station_index = DUBLIN_PLEASANTON.index(starting_station_name)
 	else:
 		"There's no such BART station"
-	end_point = raw_input("What is your destination? ")
-	if end_point in DUBLIN_PLEASANTON:
-		destination_station = DUBLIN_PLEASANTON.index(end_point)		
+	destination_station_name = raw_input("What is your destination? ")
+	if destination_station_name in DUBLIN_PLEASANTON:
+		destination_station_index = DUBLIN_PLEASANTON.index(destination_station_name)		
 	else:
 		"You're heading towards nowhere"
 
-	calculate_fare(DUBLIN_PLEASANTON, starting_station, destination_station)
+	calculate_fare(DUBLIN_PLEASANTON, starting_station_index, destination_station_index)
 	
 if __name__ == '__main__':
 	main()
