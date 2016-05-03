@@ -17,7 +17,10 @@ def travel_to_destination(fare_price,card_value):
 
 
 def calculate_fare(bart_line,start_point,end_point):
-	trip = bart_line[start_point:end_point+1]
+	if start_point > end_point:
+		trip = bart_line[start_point:end_point-1: -1]
+	else:
+		trip = bart_line[start_point:end_point+1]
 	print trip
 	total = len(trip) * 1.25
 	print total
