@@ -15,7 +15,6 @@ def travel_to_destination(fare_price,card_value):
 
 
 
-
 def calculate_fare(bart_line,start_point,end_point):
 	if start_point > end_point:
 		trip = bart_line[start_point:end_point-1: -1]
@@ -25,24 +24,35 @@ def calculate_fare(bart_line,start_point,end_point):
 	total = len(trip) * 1.25
 	print total
 
+def choose_destination(bart_line_stations_list):
+	station_indexes = []
+	print "Station List: "
+	print bart_line_stations_list
 
+	starting_station_name = raw_input("Where are you boarding the train? ")
+
+	if starting_station_name in bart_line_stations_list:
+		starting_station_index = bart_line_stations_list.index(starting_station_name)
+		station_indexes.append(starting_station_index)
+	else:
+		"There's no such BART station"
+
+	destination_station_name = raw_input("What is your destination? ")
+
+	if destination_station_name in bart_line_stations_list:
+		destination_station_index = bart_line_stations_list.index(destination_station_name)		
+		station_indexes.append(destination_station_index)
+	else:
+		"You're heading towards nowhere"
+	return station_indexes
 
 def main():
 	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
-	print "Station List: "
-	print DUBLIN_PLEASANTON
-	starting_station_name = raw_input("Where are you boarding the train? ")
-	if starting_station_name in DUBLIN_PLEASANTON:
-		starting_station_index = DUBLIN_PLEASANTON.index(starting_station_name)
-	else:
-		"There's no such BART station"
-	destination_station_name = raw_input("What is your destination? ")
-	if destination_station_name in DUBLIN_PLEASANTON:
-		destination_station_index = DUBLIN_PLEASANTON.index(destination_station_name)		
-	else:
-		"You're heading towards nowhere"
+	station_numbers = choose_destination(DUBLIN_PLEASANTON)
+	starting_index = station_numbers[0]
+	destination_index = station_numbers[1]
 
-	calculate_fare(DUBLIN_PLEASANTON, starting_station_index, destination_station_index)
+	calculate_fare(DUBLIN_PLEASANTON, starting_index, destination_index)
 	
 if __name__ == '__main__':
 	main()
