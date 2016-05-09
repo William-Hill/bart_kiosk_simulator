@@ -22,7 +22,7 @@ def calculate_fare(bart_line,start_point,end_point):
 		trip = bart_line[start_point:end_point+1]
 	print trip
 	total = len(trip) * 1.25
-	print total
+	return total
 
 def choose_destination(bart_line_stations_list):
 	station_indexes = []
@@ -48,11 +48,37 @@ def choose_destination(bart_line_stations_list):
 
 def main():
 	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
-	station_numbers = choose_destination(DUBLIN_PLEASANTON)
-	starting_index = station_numbers[0]
-	destination_index = station_numbers[1]
+	clipper_card = 0.00
+	station_numbers = None
+	trip_cost = 0.00
+	exit = False
+	while exit != True:
+		print "1. Add money to card \n2. Choose Destination \n3. Calculate Fare \n4. Travel To Destination \n5. Exit"
+		selection = int(raw_input("Please choose an action from the menu: "))
+		if selection == 1:
+			ones = int(raw_input("Enter the number of $1 bills?"))
+			fives = int(raw_input("Enter the number of $5 bills?"))
+			tens = int(raw_input("Enter the number of $10 bills?"))
+			twenties = int(raw_input("Enter the number of $20 bills?"))
+			clipper_card+=load_card(ones,fives,tens,twenties)
+			print "Your new Clipper Card value is $%.2f" % (clipper_card)
+		if selection == 2:
+			station_numbers = choose_destination(DUBLIN_PLEASANTON)
+			print "Starting station: %s" % (DUBLIN_PLEASANTON[station_numbers[0]])
+			print "Destination station: %s" % (DUBLIN_PLEASANTON[station_numbers[1]])
+		if selection == 3:
+			trip_cost = calculate_fare(DUBLIN_PLEASANTON, station_numbers[0], station_numbers[1])
+			print "Trip Cost: ", trip_cost
+		if selection == 4:
+			travel_to_destination(trip_cost,clipper_card)
+		if selection == 5:
+			exit = True
+	# DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
+	# 
+	# starting_index = station_numbers[0]
+	# destination_index = station_numbers[1]
 
-	calculate_fare(DUBLIN_PLEASANTON, starting_index, destination_index)
+	
 	
 if __name__ == '__main__':
 	main()
