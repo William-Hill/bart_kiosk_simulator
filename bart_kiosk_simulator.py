@@ -47,8 +47,6 @@ def choose_destination(bart_line_stations_list):
 
 def main():
 	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
-	print "Station List: "
-	print DUBLIN_PLEASANTON
 	station_numbers = choose_destination(DUBLIN_PLEASANTON)
 
 	calculate_fare(DUBLIN_PLEASANTON, station_numbers[0], station_numbers[1])
