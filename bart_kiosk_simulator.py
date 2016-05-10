@@ -27,22 +27,34 @@ def calculate_fare(bart_line,start_point,end_point):
 
 
 
-def main():
-	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
+def choose_destination(bart_line_stations_list):
+	station_indexes = []
 	print "Station List: "
-	print DUBLIN_PLEASANTON
+	print bart_line_stations_list
+
 	starting_station_name = raw_input("Where are you boarding the train? ")
-	if starting_station_name in DUBLIN_PLEASANTON:
-		starting_station_index = DUBLIN_PLEASANTON.index(starting_station_name)
+
+	if starting_station_name in bart_line_stations_list:
+		starting_station_index = bart_line_stations_list.index(starting_station_name)
+		station_indexes.append(starting_station_index)
 	else:
 		"There's no such BART station"
+
 	destination_station_name = raw_input("What is your destination? ")
-	if destination_station_name in DUBLIN_PLEASANTON:
-		destination_station_index = DUBLIN_PLEASANTON.index(destination_station_name)		
+
+	if destination_station_name in bart_line_stations_list:
+		destination_station_index = bart_line_stations_list.index(destination_station_name)		
+		station_indexes.append(destination_station_index)
 	else:
 		"You're heading towards nowhere"
+	return station_indexes
 
-	calculate_fare(DUBLIN_PLEASANTON, starting_station_index, destination_station_index)
+
+def main():
+	DUBLIN_PLEASANTON = ["Dublin/Pleasanton", "West Dublin/Pleasanton", "Castro Valley", "Bay Fair", "San Leandro", "Coliseum", "Fruitvale", "Lake Merritt", "West Oakland", "Embarcadero", "Montgomery St.", "Powell St.", "Civic Center/UN Plaza", "16th St. Mission", "24th St. Mission", "Glen Park", "Balboa Park","Daly City"]
+	station_numbers = choose_destination(DUBLIN_PLEASANTON)
+
+	calculate_fare(DUBLIN_PLEASANTON, station_numbers[0], station_numbers[1])
 	
 if __name__ == '__main__':
 	main()
